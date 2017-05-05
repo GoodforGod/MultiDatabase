@@ -7,13 +7,14 @@ package com.univ.db.model.dao;
 import com.univ.db.util.JpaResolver;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Default Comment
  */
 @Entity
 @Table(name = JpaResolver.TABLE_USER_ADDRESSES, schema = JpaResolver.SCHEMA)
-public class UserAddress {
+public class UserAddress implements Serializable {
 
     public static final UserAddress EMPTY = new UserAddress();
 
@@ -21,13 +22,14 @@ public class UserAddress {
     private String country;
     private String city;
     private Integer index;
-    private UserCredential credential;
+    private User user;
 
     public UserAddress() {
         this.address = "";
         this.country = "";
         this.city = "";
         this.index = -1;
+        this.user = User.EMPTY;
     }
 
     public UserAddress(String country, String city, String address, Integer index) {
@@ -40,8 +42,8 @@ public class UserAddress {
     @Id
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id")
-    public UserCredential getCredential() {
-        return credential;
+    public User getUser() {
+        return user;
     }
 
     //<editor-fold desc="GetterAndSetter">
@@ -78,8 +80,8 @@ public class UserAddress {
         this.index = index;
     }
 
-    public void setCredential(UserCredential credential) {
-        this.credential = credential;
+    public void setUser(User user) {
+        this.user = user;
     }
     //</editor-fold>
 }
