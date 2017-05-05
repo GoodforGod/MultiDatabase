@@ -7,6 +7,7 @@ package com.univ.db.controllers.restful;
 import com.univ.db.controllers.restful.exceptions.NotCreatedException;
 import com.univ.db.controllers.restful.exceptions.NotFoundException;
 import com.univ.db.model.dao.User;
+import com.univ.db.model.dao.UserAddress;
 import com.univ.db.model.dto.ItemRecentDTO;
 import com.univ.db.model.dto.UserAddressDTO;
 import com.univ.db.service.impl.ItemRecentService;
@@ -49,7 +50,7 @@ public class UserAddressRestController {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(value = PATH, method = RequestMethod.POST)
+    @RequestMapping(value = PATH + "/{id}", method = RequestMethod.POST)
     public void create(@PathVariable("id") Long id, @Valid @RequestBody UserAddressDTO model) {
         User user = userService.getById(id).orElseThrow(NotCreatedException::new);
         user.setAddress(Converter.toDAO(model));
@@ -60,7 +61,9 @@ public class UserAddressRestController {
     @RequestMapping(value = PATH + "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable("id") Long id) {
         try {
-            userService.deleteById(id);
+            User user = userService.getById(id).orElseThrow(NotFoundException::new);
+            user.setAddress(UserAddress.EMPTY);
+            userService.save(user).orElseThrow(NotCreatedException::new);
         } catch (Exception e) {
             throw new NotFoundException();
         }
