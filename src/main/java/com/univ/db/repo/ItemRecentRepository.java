@@ -7,6 +7,6 @@ package com.univ.db.repo;
 /**
  * Default Comment
  */
-public class ItemRecentRepository {
+public interface ItemRecentRepository  {
 
 }

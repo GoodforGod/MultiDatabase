@@ -7,6 +7,6 @@ package com.univ.db.service;
 /**
  * Default Comment
  */
-public interface IItemService {
+public interface IItemService<ID> {
 
 }

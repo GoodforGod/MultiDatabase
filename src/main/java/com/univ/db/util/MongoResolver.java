@@ -8,5 +8,7 @@ package com.univ.db.util;
  * Default Comment
  */
 public class MongoResolver {
+    public static final String DATABASE = "shop";
 
+    public static final String ITEMS_COLLECTION = "items";
 }
