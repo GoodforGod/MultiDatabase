@@ -1,0 +1,23 @@
+server:
+    port: 8080
+
+spring:
+  redis:
+  jpa:
+    database: postgresql
+    show-sql: true
+    hibernate:
+      ddl-auto: validate #update
+  datasource:
+    dbcp2:
+      driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/univ
+    username: postgres
+    password: 1234
+    platform: postgres
+    continue-on-error: true
+  resources:
+    static-locations: classpath:/resources/static/**, classpath:/META-INF/resources/
+
+logging:
+  level: error
