@@ -32,8 +32,8 @@ public class JpaService<T> implements ICRUDService<T, Long>{
     }
 
     @Override
-    public T save(T t) {
-        return primeRepository.save(t);
+    public Optional<T> save(T t) {
+        return Optional.of(primeRepository.save(t));
     }
 
     @Override

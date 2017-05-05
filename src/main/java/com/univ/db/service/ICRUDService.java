@@ -16,7 +16,7 @@ public interface ICRUDService<T, ID> {
 
     Optional<T> getById(ID id);
 
-    T save(T t);
+    Optional<T> save(T t);
 
     T delete(T t);
 

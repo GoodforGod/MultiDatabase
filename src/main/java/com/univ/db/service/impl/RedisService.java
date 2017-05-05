@@ -25,7 +25,7 @@ public class RedisService<T> implements ICRUDService<T, Long> {
     }
 
     @Override
-    public T save(T t) {
+    public Optional<T> save(T t) {
         return null;
     }
 

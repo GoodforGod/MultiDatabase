@@ -7,6 +7,6 @@ package com.univ.db.model.dto;
 /**
  * Default Comment
  */
-public class UserCredentialDTO {
+public class UserDTO {
 
 }
