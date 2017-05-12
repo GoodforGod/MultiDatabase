@@ -1,4 +1,4 @@
-package com.univ.db.service.impl;
+package com.univ.db.service.modelbased.impl;
 
 /*
  * Created by @GoodforGod on 05.05.2017.
@@ -6,7 +6,7 @@ package com.univ.db.service.impl;
 
 import com.univ.db.model.dao.Item;
 import com.univ.db.repo.ItemRepository;
-import com.univ.db.service.IItemService;
+import com.univ.db.service.modelbased.IItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

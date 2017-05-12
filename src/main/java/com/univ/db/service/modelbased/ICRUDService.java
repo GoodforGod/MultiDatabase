@@ -1,4 +1,4 @@
-package com.univ.db.service;
+package com.univ.db.service.modelbased;
 
 /*
  * Created by @GoodforGod on 05.05.2017.

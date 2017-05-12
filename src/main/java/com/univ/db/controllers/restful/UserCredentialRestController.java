@@ -7,7 +7,7 @@ package com.univ.db.controllers.restful;
 import com.univ.db.controllers.restful.exceptions.NotCreatedException;
 import com.univ.db.controllers.restful.exceptions.NotFoundException;
 import com.univ.db.model.dto.UserDTO;
-import com.univ.db.service.impl.UserService;
+import com.univ.db.service.modelbased.impl.UserService;
 import com.univ.db.util.Converter;
 import com.univ.db.util.RestResolver;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +46,7 @@ public class UserCredentialRestController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = PATH, method = RequestMethod.POST)
-    public void create(@PathVariable("id") Long id, @Valid @RequestBody UserDTO model) {
+    public void create(@Valid @RequestBody UserDTO model) {
         userService.save(Converter.toDAO(model)).orElseThrow(NotCreatedException::new);
     }
 

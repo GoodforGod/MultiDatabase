@@ -1,13 +1,14 @@
-package com.univ.db.service.impl;
+package com.univ.db.service.modelbased.impl;
 
 /*
  * Created by @GoodforGod on 05.05.2017.
  */
 
-import com.univ.db.service.ICRUDService;
+import com.univ.db.service.modelbased.ICRUDService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -59,6 +60,7 @@ public class JpaService<T> implements ICRUDService<T, Long>{
         return Optional.of(primeRepository.findOne(id));
     }
 
+    @Transactional
     @Override
     public Optional<T> save(T t) {
         if(invalidModel(t))
@@ -67,6 +69,7 @@ public class JpaService<T> implements ICRUDService<T, Long>{
         return Optional.of(primeRepository.save(t));
     }
 
+    @Transactional
     @Override
     public Optional<T> delete(T t) {
         if(invalidModel(t))
@@ -76,6 +79,7 @@ public class JpaService<T> implements ICRUDService<T, Long>{
         return Optional.of(t);
     }
 
+    @Transactional
     @Override
     public void deleteById(Long id) {
         if(invalidId(id))

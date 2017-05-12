@@ -4,10 +4,12 @@ package com.univ.db.model.dao;
  * Created by @GoodforGod on 05.05.2017.
  */
 
+import java.io.Serializable;
+
 /**
  * Default Comment
  */
-public class ItemRecent {
+public class ItemRecent implements Serializable {
 
     public static final ItemRecent EMPTY = new ItemRecent();
 
@@ -64,4 +66,14 @@ public class ItemRecent {
         this.specs = specs;
     }
     //</editor-fold>
+
+    @Override
+    public String toString() {
+        return "ItemRecent{" +
+                "catalogCode=" + catalogCode +
+                ", title='" + title + '\'' +
+                ", descr='" + descr + '\'' +
+                ", specs='" + specs + '\'' +
+                '}';
+    }
 }

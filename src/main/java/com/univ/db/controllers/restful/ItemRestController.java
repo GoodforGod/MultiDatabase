@@ -7,7 +7,7 @@ package com.univ.db.controllers.restful;
 import com.univ.db.controllers.restful.exceptions.NotCreatedException;
 import com.univ.db.controllers.restful.exceptions.NotFoundException;
 import com.univ.db.model.dto.ItemDTO;
-import com.univ.db.service.impl.ItemService;
+import com.univ.db.service.modelbased.impl.ItemService;
 import com.univ.db.util.Converter;
 import com.univ.db.util.RestResolver;
 import org.springframework.beans.factory.annotation.Autowired;

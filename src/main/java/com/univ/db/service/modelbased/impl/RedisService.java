@@ -1,12 +1,13 @@
-package com.univ.db.service.impl;
+package com.univ.db.service.modelbased.impl;
 
 /*
  * Created by @GoodforGod on 05.05.2017.
  */
 
-import com.univ.db.service.ICRUDService;
+import com.univ.db.service.modelbased.ICRUDService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,9 +15,9 @@ import java.util.Optional;
 /**
  * Default Comment
  */
-public class RedisService<T> implements ICRUDService<T, Long> {
+public class RedisService<T> implements ICRUDService<T, String> {
 
-    private final Logger LOGGER = LoggerFactory.getLogger(RedisService.class);
+    protected final Logger LOGGER = LoggerFactory.getLogger(RedisService.class);
 
     protected boolean invalidModel(T t) {
         if(t == null) {
@@ -45,22 +46,25 @@ public class RedisService<T> implements ICRUDService<T, Long> {
     }
 
     @Override
-    public Optional<T> getById(Long aLong) {
+    public Optional<T> getById(String s) {
         return null;
     }
 
+    @Transactional
     @Override
     public Optional<T> save(T t) {
         return null;
     }
 
+    @Transactional
     @Override
     public Optional<T> delete(T t) {
         return null;
     }
 
+    @Transactional
     @Override
-    public void deleteById(Long aLong) {
+    public void deleteById(String s) {
 
     }
 }

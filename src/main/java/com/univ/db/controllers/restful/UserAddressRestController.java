@@ -9,7 +9,7 @@ import com.univ.db.controllers.restful.exceptions.NotFoundException;
 import com.univ.db.model.dao.User;
 import com.univ.db.model.dao.UserAddress;
 import com.univ.db.model.dto.UserAddressDTO;
-import com.univ.db.service.impl.UserService;
+import com.univ.db.service.modelbased.impl.UserService;
 import com.univ.db.util.Converter;
 import com.univ.db.util.RestResolver;
 import org.springframework.beans.factory.annotation.Autowired;

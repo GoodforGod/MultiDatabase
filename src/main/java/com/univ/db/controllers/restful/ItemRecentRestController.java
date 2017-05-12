@@ -7,7 +7,7 @@ package com.univ.db.controllers.restful;
 import com.univ.db.controllers.restful.exceptions.NotCreatedException;
 import com.univ.db.controllers.restful.exceptions.NotFoundException;
 import com.univ.db.model.dto.ItemRecentDTO;
-import com.univ.db.service.impl.ItemRecentService;
+import com.univ.db.service.modelbased.impl.ItemRecentService;
 import com.univ.db.util.Converter;
 import com.univ.db.util.RestResolver;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ public class ItemRecentRestController {
 
     @RequestMapping(value = PATH + "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ItemRecentDTO> get(@PathVariable("id") Long id) {
-        ItemRecentDTO recentDTO = Converter.toDTO(itemService.getById(id).orElseThrow(NotFoundException::new));
+        ItemRecentDTO recentDTO = Converter.toDTO(itemService.getById(id.toString()).orElseThrow(NotFoundException::new));
         return new ResponseEntity<>(recentDTO, HttpStatus.OK);
     }
 
@@ -53,7 +53,7 @@ public class ItemRecentRestController {
     @RequestMapping(value = PATH + "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable("id") Long id) {
         try {
-            itemService.deleteById(id);
+            itemService.deleteById(id.toString());
         } catch (Exception e) {
             throw new NotFoundException();
         }
