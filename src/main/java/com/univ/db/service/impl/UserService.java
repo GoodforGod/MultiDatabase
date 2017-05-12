@@ -8,10 +8,12 @@ import com.univ.db.model.dao.User;
 import com.univ.db.repo.UserRepository;
 import com.univ.db.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * Default Comment
  */
+@Service
 public class UserService extends JpaService<User> implements IUserService {
 
     private final UserRepository repository;

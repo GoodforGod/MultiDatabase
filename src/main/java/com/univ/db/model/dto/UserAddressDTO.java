@@ -10,19 +10,22 @@ package com.univ.db.model.dto;
 public class UserAddressDTO {
     public static final UserAddressDTO EMPTY = new UserAddressDTO();
 
+    private Long userId;
     private String address;
     private String country;
     private String city;
     private Integer index;
 
-    public UserAddressDTO() {
+    private UserAddressDTO() {
+        this.userId = 0L;
         this.address = "";
         this.country = "";
         this.city = "";
         this.index = -1;
     }
 
-    public UserAddressDTO(String country, String city, String address, Integer index) {
+    public UserAddressDTO(Long userId, String country, String city, String address, Integer index) {
+        this.userId = userId;
         this.index = index;
         this.country = country;
         this.city = city;
@@ -30,6 +33,14 @@ public class UserAddressDTO {
     }
 
     //<editor-fold desc="GetterAndSetter">
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 
     public String getAddress() {
         return address;

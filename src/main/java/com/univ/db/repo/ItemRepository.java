@@ -15,5 +15,5 @@ import java.util.Optional;
  */
 @Repository
 public interface ItemRepository extends MongoRepository<Item, String> {
-    Optional<Item> findByCatalogCode(Integer code);
+    Optional<Item> findByCatalogCode(Long code);
 }

@@ -11,19 +11,19 @@ public class ItemRecent {
 
     public static final ItemRecent EMPTY = new ItemRecent();
 
-    private Integer catalogCode;
+    private Long catalogCode;
     private String title;
     private String descr;
     private String specs;
 
-    public ItemRecent() {
-        this.catalogCode = -1;
+    private ItemRecent() {
+        this.catalogCode = 0L;
         this.title = "";
         this.descr = "";
         this.specs = "";
     }
 
-    public ItemRecent(Integer catalogCode, String title, String descr, String specs) {
+    public ItemRecent(Long catalogCode, String title, String descr, String specs) {
         this.catalogCode = catalogCode;
         this.title = title;
         this.descr = descr;
@@ -32,11 +32,11 @@ public class ItemRecent {
 
     //<editor-fold desc="GetterAndSetter">
 
-    public Integer getCatalogCode() {
+    public Long getCatalogCode() {
         return catalogCode;
     }
 
-    public void setCatalogCode(Integer catalogCode) {
+    public void setCatalogCode(Long catalogCode) {
         this.catalogCode = catalogCode;
     }
 

@@ -24,12 +24,11 @@ public class UserAddress implements Serializable {
     private Integer index;
     private User user;
 
-    public UserAddress() {
+    private UserAddress() {
         this.address = "";
         this.country = "";
         this.city = "";
         this.index = -1;
-        this.user = User.EMPTY;
     }
 
     public UserAddress(String country, String city, String address, Integer index) {

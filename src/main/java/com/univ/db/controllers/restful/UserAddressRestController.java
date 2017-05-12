@@ -8,9 +8,7 @@ import com.univ.db.controllers.restful.exceptions.NotCreatedException;
 import com.univ.db.controllers.restful.exceptions.NotFoundException;
 import com.univ.db.model.dao.User;
 import com.univ.db.model.dao.UserAddress;
-import com.univ.db.model.dto.ItemRecentDTO;
 import com.univ.db.model.dto.UserAddressDTO;
-import com.univ.db.service.impl.ItemRecentService;
 import com.univ.db.service.impl.UserService;
 import com.univ.db.util.Converter;
 import com.univ.db.util.RestResolver;
@@ -27,7 +25,7 @@ import javax.validation.Valid;
  */
 @RestController
 public class UserAddressRestController {
-    private final String PATH = RestResolver.ITEM;
+    private final String PATH = RestResolver.ADDRESS;
     private final UserService userService;
 
     @Autowired

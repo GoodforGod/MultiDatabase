@@ -6,10 +6,8 @@ package com.univ.db.controllers.restful;
 
 import com.univ.db.controllers.restful.exceptions.NotCreatedException;
 import com.univ.db.controllers.restful.exceptions.NotFoundException;
-import com.univ.db.model.dto.ItemDTO;
 import com.univ.db.model.dto.ItemRecentDTO;
 import com.univ.db.service.impl.ItemRecentService;
-import com.univ.db.service.impl.ItemService;
 import com.univ.db.util.Converter;
 import com.univ.db.util.RestResolver;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +23,7 @@ import javax.validation.Valid;
  */
 @RestController
 public class ItemRecentRestController {
-    private final String PATH = RestResolver.ITEM;
+    private final String PATH = RestResolver.ITEM_RECENT;
     private final ItemRecentService itemService;
 
     @Autowired

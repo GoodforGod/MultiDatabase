@@ -10,6 +10,8 @@ import com.univ.db.service.IItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 /**
  * Default Comment
  */
@@ -22,5 +24,10 @@ public class ItemService extends MongoService<Item> implements IItemService<Stri
     public ItemService(ItemRepository repository) {
         super(repository);
         this.repository = repository;
+    }
+
+    @Override
+    public Optional<Item> getByCatalogCode(Long id) {
+        return repository.findByCatalogCode(id);
     }
 }

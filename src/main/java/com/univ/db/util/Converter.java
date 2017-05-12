@@ -21,38 +21,72 @@ public class Converter {
     //<editor-fold desc="toDTO">
 
     public static ItemDTO toDTO(Item t) {
-        return null;
+        return (t == null)
+                ? ItemDTO.EMPTY
+                : new ItemDTO(t.getId(),
+                                t.getCatalogCode(),
+                                t.getTitle(),
+                                t.getDescr(),
+                                t.getSpecs(),
+                                t.getTags(),
+                                t.getManufacture());
     }
 
     public static ItemRecentDTO toDTO(ItemRecent t) {
-        return null;
+        return (t == null)
+                ? ItemRecentDTO.EMPTY
+                : new ItemRecentDTO(t.getCatalogCode(),
+                                    t.getTitle(),
+                                    t.getDescr(),
+                                    t.getSpecs());
     }
 
     public static UserDTO toDTO(User t) {
-        return null;
+        return (t == null)
+                ? UserDTO.EMPTY
+                : new UserDTO(t.getId(),
+                            t.getName(),
+                            t.getEmail(),
+                            t.getPassword());
     }
 
     public static UserAddressDTO toDTO(UserAddress t) {
-        return null;
+        return (t == null)
+                ? UserAddressDTO.EMPTY
+                : new UserAddressDTO(t.getUser().getId(),
+                                    t.getCountry(),
+                                    t.getCity(),
+                                    t.getAddress(),
+                                    t.getIndex());
     }
     //</editor-fold>
 
     //<editor-fold desc="toDAO">
 
     public static Item toDAO(ItemDTO t) {
-        return null;
+        if(t == null)
+            throw new NullPointerException("NULLABLE");
+
+        return new Item(t.getId(), t.getCatalogCode(), t.getTitle(), t.getDescr(), t.getSpecs(), t.getTags(), t.getManufacture());
     }
 
     public static ItemRecent toDAO(ItemRecentDTO t) {
-        return null;
+        if(t == null)
+            throw new NullPointerException("NULLABLE");
+        return new ItemRecent(t.getCatalogCode(), t.getTitle(), t.getDescr(), t.getSpecs());
     }
 
     public static UserAddress toDAO(UserAddressDTO t) {
-        return null;
+        if(t == null)
+            throw new NullPointerException("NULLABLE");
+        return new UserAddress(t.getCountry(), t.getCity(), t.getAddress(), t.getIndex());
     }
 
     public static User toDAO(UserDTO t) {
-        return null;
+        if(t == null)
+            throw new NullPointerException("NULLABLE");
+
+        return new User(t.getId(), t.getName(), t.getEmail(), t.getPassword());
     }
     //</editor-fold>
 }

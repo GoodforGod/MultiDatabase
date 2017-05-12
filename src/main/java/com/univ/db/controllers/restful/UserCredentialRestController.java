@@ -6,8 +6,6 @@ package com.univ.db.controllers.restful;
 
 import com.univ.db.controllers.restful.exceptions.NotCreatedException;
 import com.univ.db.controllers.restful.exceptions.NotFoundException;
-import com.univ.db.model.dao.User;
-import com.univ.db.model.dto.UserAddressDTO;
 import com.univ.db.model.dto.UserDTO;
 import com.univ.db.service.impl.UserService;
 import com.univ.db.util.Converter;
@@ -26,7 +24,7 @@ import javax.validation.Valid;
 @RestController
 public class UserCredentialRestController {
 
-    private final String PATH = RestResolver.ITEM;
+    private final String PATH = RestResolver.USER;
     private final UserService userService;
 
     @Autowired

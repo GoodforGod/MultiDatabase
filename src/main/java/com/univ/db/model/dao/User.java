@@ -28,7 +28,8 @@ public class User {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
     private UserAddress address;
 
-    public User() {
+    private User() {
+        this.id = 0L;
         this.name   = "";
         this.email  = "";
         this.password = "";
@@ -38,6 +39,11 @@ public class User {
         this.name   = name;
         this.email  = email;
         this.password = password;
+    }
+
+    public User(Long id, String name, String email, String password) {
+        this(name, email, password);
+        this.id = id;
     }
 
     //<editor-fold desc="GetterAndSetter">

@@ -9,7 +9,6 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Id;
-import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
@@ -25,16 +24,16 @@ public class Item {
     private String id;
 
     @Indexed(unique = true)
-    private Integer catalogCode;
+    private Long catalogCode;
     private String title;
     private String descr;
     private List<String> specs;
     private List<String> tags;
     private Manufacture manufacture;
 
-    public Item() {
+    private Item() {
         this.id = "-1";
-        this.catalogCode = -1;
+        this.catalogCode = 0L;
         this.title = "";
         this.descr = "";
         this.specs = Collections.emptyList();
@@ -42,25 +41,21 @@ public class Item {
         this.manufacture = new Manufacture();
     }
 
-    public Item(Integer catalogCode, String title, String descr,
+    public Item(Long catalogCode, String title, String descr,
                 List<String> specs, List<String> tags, Manufacture manufacture) {
         this.catalogCode = catalogCode;
-        this.title = title;
-        this.descr = descr;
-        this.specs = specs;
-        this.tags = tags;
+        this.title  = title;
+        this.descr  = descr;
+        this.specs  = specs;
+        this.tags   = tags;
         this.manufacture = manufacture;
     }
 
-    public Item(Integer catalogCode, String title, String descr,
+    public Item(String id, Long catalogCode, String title, String descr,
                 List<String> specs, List<String> tags,
-                String firm, LocalDateTime designed, String country, String city, LocalDateTime warranty) {
-        this.catalogCode = catalogCode;
-        this.title = title;
-        this.descr = descr;
-        this.specs = specs;
-        this.tags = tags;
-        this.manufacture = new Manufacture(firm, designed, country, city, warranty);
+                Manufacture manufacture) {
+       this(catalogCode, title, descr, specs, tags, manufacture);
+       this.id = id;
     }
 
     //<editor-fold desc="GetterAndSetter">
@@ -73,11 +68,11 @@ public class Item {
         this.id = id;
     }
 
-    public Integer getCatalogCode() {
+    public Long getCatalogCode() {
         return catalogCode;
     }
 
-    public void setCatalogCode(Integer catalogCode) {
+    public void setCatalogCode(Long catalogCode) {
         this.catalogCode = catalogCode;
     }
 

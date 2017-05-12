@@ -12,13 +12,15 @@ import java.util.Optional;
  */
 public interface ICRUDService<T, ID> {
 
+    Optional<Long> count();
+
     Optional<List<T>> getAll();
 
     Optional<T> getById(ID id);
 
     Optional<T> save(T t);
 
-    T delete(T t);
+    Optional<T> delete(T t);
 
     void deleteById(ID id);
 }

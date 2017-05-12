@@ -8,6 +8,7 @@ import com.univ.db.model.dao.Manufacture;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,16 +18,16 @@ public class ItemDTO {
     public static final ItemDTO EMPTY = new ItemDTO();
 
     private String id;
-    private Integer catalogCode;
+    private Long catalogCode;
     private String title;
     private String descr;
     private List<String> specs;
     private List<String> tags;
     private Manufacture manufacture;
 
-    public ItemDTO() {
-        this.id = "-1";
-        this.catalogCode = -1;
+    private ItemDTO() {
+        this.id = "0";
+        this.catalogCode = 0L;
         this.title = "";
         this.descr = "";
         this.specs = Collections.emptyList();
@@ -34,8 +35,9 @@ public class ItemDTO {
         this.manufacture = new Manufacture();
     }
 
-    public ItemDTO(Integer catalogCode, String title, String descr,
+    public ItemDTO(String id, Long catalogCode, String title, String descr,
                 List<String> specs, List<String> tags, Manufacture manufacture) {
+        this.id = id;
         this.catalogCode = catalogCode;
         this.title = title;
         this.descr = descr;
@@ -44,15 +46,10 @@ public class ItemDTO {
         this.manufacture = manufacture;
     }
 
-    public ItemDTO(Integer catalogCode, String title, String descr,
+    public ItemDTO(String id, Long catalogCode, String title, String descr,
                    List<String> specs, List<String> tags,
-                   String firm, LocalDateTime designed, String country, String city, LocalDateTime warranty) {
-        this.catalogCode = catalogCode;
-        this.title = title;
-        this.descr = descr;
-        this.specs = specs;
-        this.tags = tags;
-        this.manufacture = new Manufacture(firm, designed, country, city, warranty);
+                   String firm, LocalDateTime designed, String country, String city) {
+        this(id, catalogCode, title, descr, specs, tags, new Manufacture(firm, country, city, new Date(designed.getYear(), designed.getMonthValue(), designed.getDayOfMonth(), designed.getHour(), designed.getMinute())));
     }
 
     //<editor-fold desc="GetterAndSetter">
@@ -65,11 +62,11 @@ public class ItemDTO {
         this.id = id;
     }
 
-    public Integer getCatalogCode() {
+    public Long getCatalogCode() {
         return catalogCode;
     }
 
-    public void setCatalogCode(Integer catalogCode) {
+    public void setCatalogCode(Long catalogCode) {
         this.catalogCode = catalogCode;
     }
 

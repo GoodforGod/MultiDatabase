@@ -10,19 +10,19 @@ package com.univ.db.model.dto;
 public class ItemRecentDTO {
     public static final ItemRecentDTO EMPTY = new ItemRecentDTO();
 
-    private Integer catalogCode;
+    private Long catalogCode;
     private String title;
     private String descr;
     private String specs;
 
-    public ItemRecentDTO() {
-        this.catalogCode = -1;
+    private ItemRecentDTO() {
+        this.catalogCode = 0L;
         this.title = "";
         this.descr = "";
         this.specs = "";
     }
 
-    public ItemRecentDTO(Integer catalogCode, String title, String descr, String specs) {
+    public ItemRecentDTO(Long catalogCode, String title, String descr, String specs) {
         this.catalogCode = catalogCode;
         this.title = title;
         this.descr = descr;
@@ -31,11 +31,11 @@ public class ItemRecentDTO {
 
     //<editor-fold desc="GetterAndSetter">
 
-    public Integer getCatalogCode() {
+    public Long getCatalogCode() {
         return catalogCode;
     }
 
-    public void setCatalogCode(Integer catalogCode) {
+    public void setCatalogCode(Long catalogCode) {
         this.catalogCode = catalogCode;
     }
 
