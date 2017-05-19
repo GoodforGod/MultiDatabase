@@ -1,6 +1,6 @@
 package com.univ.db.repo;
 
-import com.univ.db.model.dao.Customer;
+import com.univ.db.model.dao.Seller;
 import org.springframework.data.neo4j.repository.GraphRepository;
 
 import java.util.List;
@@ -12,9 +12,9 @@ import java.util.Optional;
  * @author @GoodforGod
  * @since 19.05.2017
  */
-public interface CustomerRepository extends GraphRepository<Customer> {
+public interface SellerRepository extends GraphRepository<Seller> {
 
-    Optional<List<Customer>> findByName(String name);
+    Optional<List<Seller>> findByName(String name);
 
-    Optional<List<Customer>> findByEmail(String email);
+    Optional<Seller> findByEmail(String email);
 }

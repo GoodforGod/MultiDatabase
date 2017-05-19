@@ -5,6 +5,8 @@ package com.univ.db.model.dao;
  */
 
 import com.univ.db.util.JpaResolver;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 
@@ -21,15 +23,20 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
     private String name;
+
+    @Column(unique = true)
+    @Email
     private String email;
+
+    @NotEmpty
     private String password;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
     private UserAddress address;
 
     private User() {
-        this.id = 0L;
         this.name   = "";
         this.email  = "";
         this.password = "";
@@ -44,6 +51,11 @@ public class User {
     public User(Long id, String name, String email, String password) {
         this(name, email, password);
         this.id = id;
+    }
+
+    public User(Long id, String name, String email, String password, UserAddress address) {
+        this(id, name, email, password);
+        this.address = address;
     }
 
     //<editor-fold desc="GetterAndSetter">

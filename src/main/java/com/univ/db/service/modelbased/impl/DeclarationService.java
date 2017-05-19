@@ -5,7 +5,6 @@ import com.univ.db.repo.DeclarationRepository;
 import com.univ.db.service.modelbased.IDeclarationService;
 import com.univ.db.service.modelbased.impl.prime.CassandraService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.cassandra.repository.CassandraRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,8 +22,8 @@ public class DeclarationService extends CassandraService<Declaration> implements
     private final DeclarationRepository repository;
 
     @Autowired
-    public DeclarationService(CassandraRepository<Declaration> primeRepository, DeclarationRepository repository) {
-        super(primeRepository);
+    public DeclarationService(DeclarationRepository repository) {
+        super(repository);
         this.repository = repository;
     }
 

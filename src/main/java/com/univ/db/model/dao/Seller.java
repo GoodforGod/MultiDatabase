@@ -1,5 +1,6 @@
 package com.univ.db.model.dao;
 
+import org.hibernate.validator.constraints.Email;
 import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
@@ -14,24 +15,27 @@ import java.util.Set;
  * @since 19.05.2017
  */
 @NodeEntity
-public class Customer {
+public class Seller {
 
-    public static final Customer EMPTY = new Customer();
+    public static final Seller EMPTY = new Seller();
 
     @GraphId
     private Long id;
 
     private String name;
+
+    @Email
     private String email;
 
     @Relationship(type="ORDERED", direction = Relationship.INCOMING)
     private Set<Order> orders = new HashSet<>();
 
-    private Customer() {
+    private Seller() {
 
     }
 
-    public Customer(String name, String email) {
+    public Seller(Long id, String name, String email) {
+        this.id = id;
         this.name = name;
         this.email = email;
     }
@@ -77,7 +81,7 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer{" +
+        return "Seller{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +

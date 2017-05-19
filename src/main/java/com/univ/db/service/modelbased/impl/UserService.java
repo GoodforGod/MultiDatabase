@@ -11,6 +11,9 @@ import com.univ.db.service.modelbased.impl.prime.JpaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 /**
  * Default Comment
  */
@@ -23,5 +26,15 @@ public class UserService extends JpaService<User, Long> implements IUserService 
     public UserService(UserRepository repository) {
         super(repository);
         this.repository = repository;
+    }
+
+    @Override
+    public Optional<List<User>> getByName(String name) {
+        return repository.findByName(name);
+    }
+
+    @Override
+    public Optional<User> getByEmail(String email) {
+        return repository.findByEmail(email);
     }
 }
