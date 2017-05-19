@@ -21,19 +21,17 @@ import java.util.Optional;
 @Service
 public class ItemRecentService extends RedisService<ItemRecent> implements IItemRecentService {
 
-    private static final String KEY = "ItemRecent";
-
     private final RedisTemplate<String, ItemRecent> redisTemplate;
 
     @Autowired
     public ItemRecentService(RedisTemplate<String, ItemRecent> redisTemplate) {
+        super(redisTemplate);
         this.redisTemplate = redisTemplate;
     }
 
     @Override
     public Optional<Long> count() {
-//        return Optional.of(redisTemplate.
-        return Optional.empty();
+        return super.count();
     }
 
     @Override
