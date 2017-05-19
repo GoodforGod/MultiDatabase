@@ -1,4 +1,4 @@
-package com.univ.db.service.modelbased.impl;
+package com.univ.db.service.modelbased.impl.prime;
 
 import com.google.common.collect.Lists;
 import com.univ.db.service.modelbased.ICRUDService;
@@ -15,7 +15,7 @@ import java.util.Optional;
  * @author @GoodforGod
  * @since 19.05.2017
  */
-public class CassandraService<T> implements ICRUDService<T, MapId> {
+public class CassandraService<T> extends PrimeUtilService<T, MapId> implements ICRUDService<T, MapId> {
 
     private CassandraRepository<T> primeRepository;
 

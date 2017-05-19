@@ -7,6 +7,7 @@ package com.univ.db.service.modelbased.impl;
 import com.univ.db.model.dao.Item;
 import com.univ.db.repo.ItemRepository;
 import com.univ.db.service.modelbased.IItemService;
+import com.univ.db.service.modelbased.impl.prime.MongoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

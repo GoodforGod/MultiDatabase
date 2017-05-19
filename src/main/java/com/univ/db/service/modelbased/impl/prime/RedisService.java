@@ -1,12 +1,10 @@
-package com.univ.db.service.modelbased.impl;
+package com.univ.db.service.modelbased.impl.prime;
 
 /*
  * Created by @GoodforGod on 05.05.2017.
  */
 
 import com.univ.db.service.modelbased.ICRUDService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,30 +15,12 @@ import java.util.Optional;
 /**
  * Default Comment
  */
-public class RedisService<T> implements ICRUDService<T, String> {
-
-    protected final Logger LOGGER = LoggerFactory.getLogger(RedisService.class);
+public class RedisService<T> extends PrimeUtilService<T, String> implements ICRUDService<T, String> {
 
     protected RedisTemplate<String, T> redisTemplate;
 
     public RedisService(RedisTemplate<String, T> redisTemplate) {
         this.redisTemplate = redisTemplate;
-    }
-
-    protected boolean invalidModel(T t) {
-        if(t == null) {
-            LOGGER.warn("NULL MODEL");
-            return true;
-        }
-        return false;
-    }
-
-    protected boolean invalidId(Long id) {
-        if(id == null) {
-            LOGGER.warn("NULL ID");
-            return true;
-        }
-        return false;
     }
 
     @Override
@@ -60,7 +40,7 @@ public class RedisService<T> implements ICRUDService<T, String> {
                 getById(s).ifPresent(models::add);
         }
         catch (Exception e){
-            LOGGER.warn(e.getMessage());
+            logger.warn(e.getMessage());
         }
 
         return Optional.of(models);
@@ -72,7 +52,7 @@ public class RedisService<T> implements ICRUDService<T, String> {
             return Optional.of(redisTemplate.opsForValue().get(id));
         }
         catch (Exception e) {
-            LOGGER.warn(e.getMessage() + " : " + id);
+            logger.warn(e.getMessage() + " : " + id);
             return Optional.empty();
         }
     }

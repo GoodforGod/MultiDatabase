@@ -1,12 +1,10 @@
-package com.univ.db.service.modelbased.impl;
+package com.univ.db.service.modelbased.impl.prime;
 
 /*
  * Created by @GoodforGod on 05.05.2017.
  */
 
 import com.univ.db.service.modelbased.ICRUDService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,30 +14,12 @@ import java.util.Optional;
 /**
  * Default Comment
  */
-public class MongoService<T> implements ICRUDService<T, String> {
+public class MongoService<T> extends PrimeUtilService<T, String> implements ICRUDService<T, String> {
 
     private MongoRepository<T, String> primeRepository;
 
-    private final Logger LOGGER = LoggerFactory.getLogger(MongoService.class);
-
     public MongoService(MongoRepository<T, String> mongoRepository) {
         this.primeRepository = mongoRepository;
-    }
-
-    protected boolean invalidModel(T t) {
-        if(t == null) {
-            LOGGER.warn("NULL MODEL");
-            return true;
-        }
-        return false;
-    }
-
-    protected boolean invalidId(String id) {
-        if(id == null || id.trim().isEmpty()) {
-            LOGGER.warn("NULL ID");
-            return true;
-        }
-        return false;
     }
 
     @Override

@@ -6,6 +6,7 @@ package com.univ.db.service.modelbased.impl;
 
 import com.univ.db.model.dao.ItemRecent;
 import com.univ.db.service.modelbased.IItemRecentService;
+import com.univ.db.service.modelbased.impl.prime.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -43,7 +44,7 @@ public class ItemRecentService extends RedisService<ItemRecent> implements IItem
                 getById(s).ifPresent(itemRecents::add);
         }
         catch (Exception e){
-            LOGGER.warn(e.getMessage());
+            logger.warn(e.getMessage());
         }
 
         return Optional.of(itemRecents);
@@ -55,7 +56,7 @@ public class ItemRecentService extends RedisService<ItemRecent> implements IItem
             return Optional.of(redisTemplate.opsForValue().get(id));
         }
         catch (Exception e) {
-            LOGGER.warn(e.getMessage() + " : " + id);
+            logger.warn(e.getMessage() + " : " + id);
             return Optional.empty();
         }
     }
@@ -67,7 +68,7 @@ public class ItemRecentService extends RedisService<ItemRecent> implements IItem
             redisTemplate.opsForValue().set(itemRecent.getCatalogCode().toString(), itemRecent);
         }
         catch (Exception e) {
-            LOGGER.warn(e.getMessage() + " : " + itemRecent.getCatalogCode());
+            logger.warn(e.getMessage() + " : " + itemRecent.getCatalogCode());
         }
         return Optional.of(itemRecent);
     }
@@ -79,7 +80,7 @@ public class ItemRecentService extends RedisService<ItemRecent> implements IItem
             deleteById(itemRecent.getCatalogCode().toString());
         }
         catch (Exception e) {
-            LOGGER.warn(e.getMessage() + " : " + itemRecent.getCatalogCode());
+            logger.warn(e.getMessage() + " : " + itemRecent.getCatalogCode());
         }
        return Optional.of(itemRecent);
     }
@@ -91,7 +92,7 @@ public class ItemRecentService extends RedisService<ItemRecent> implements IItem
             redisTemplate.opsForValue().getOperations().delete(id);
         }
         catch (Exception e) {
-            LOGGER.warn(e.getMessage() + " : " + id);
+            logger.warn(e.getMessage() + " : " + id);
         }
     }
 
@@ -102,7 +103,7 @@ public class ItemRecentService extends RedisService<ItemRecent> implements IItem
                 redisTemplate.delete(s);
         }
         catch (Exception e) {
-            LOGGER.warn(e.getMessage());
+            logger.warn(e.getMessage());
         }
     }
 }

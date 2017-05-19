@@ -24,5 +24,8 @@ spring:
     cassandra:
       port: 9042
       keyspace-name: sample
+    neo4j:
+      username: neo4j
+      password: 1234
 logging:
   level: error

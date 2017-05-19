@@ -1,12 +1,10 @@
 package com.univ.db.config;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.data.cassandra.config.CassandraClusterFactoryBean;
 import org.springframework.data.cassandra.config.java.AbstractCassandraConfiguration;
 import org.springframework.data.cassandra.mapping.BasicCassandraMappingContext;
 import org.springframework.data.cassandra.mapping.CassandraMappingContext;
-import org.springframework.data.cassandra.repository.config.EnableCassandraRepositories;
 
 /**
  * Default Comment
@@ -14,8 +12,8 @@ import org.springframework.data.cassandra.repository.config.EnableCassandraRepos
  * @author @GoodforGod
  * @since 19.05.2017
  */
-@Configuration
-@EnableCassandraRepositories(basePackages = "com.univ.db")
+//@Configuration
+//@EnableCassandraRepositories(basePackages = "com.univ.db")
 public class CassandraConfig extends AbstractCassandraConfiguration {
 
     @Override

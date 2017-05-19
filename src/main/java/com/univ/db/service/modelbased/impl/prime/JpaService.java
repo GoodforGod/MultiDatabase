@@ -1,45 +1,26 @@
-package com.univ.db.service.modelbased.impl;
+package com.univ.db.service.modelbased.impl.prime;
 
 /*
  * Created by @GoodforGod on 05.05.2017.
  */
 
 import com.univ.db.service.modelbased.ICRUDService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
 /**
  * Default Comment
  */
-public class JpaService<T> implements ICRUDService<T, Long>{
+public class JpaService<T, ID extends Serializable> extends PrimeUtilService<T, ID> implements ICRUDService<T, ID>{
 
-    private JpaRepository<T, Long> primeRepository;
+    private JpaRepository<T, ID> primeRepository;
 
-    private final Logger LOGGER = LoggerFactory.getLogger(JpaService.class);
-
-    public JpaService(JpaRepository<T, Long> jpaRepository) {
+    public JpaService(JpaRepository<T, ID> jpaRepository) {
         this.primeRepository = jpaRepository;
-    }
-
-    protected boolean invalidModel(T t) {
-        if(t == null) {
-            LOGGER.warn("NULL MODEL");
-            return true;
-        }
-        return false;
-    }
-
-    protected boolean invalidId(Long id) {
-        if(id == null) {
-            LOGGER.warn("NULL ID");
-            return true;
-        }
-        return false;
     }
 
     @Override
@@ -53,7 +34,7 @@ public class JpaService<T> implements ICRUDService<T, Long>{
     }
 
     @Override
-    public Optional<T> getById(Long id) {
+    public Optional<T> getById(ID id) {
         if(invalidId(id))
             return Optional.empty();
 
@@ -81,7 +62,7 @@ public class JpaService<T> implements ICRUDService<T, Long>{
 
     @Transactional
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(ID id) {
         if(invalidId(id))
             return;
 
