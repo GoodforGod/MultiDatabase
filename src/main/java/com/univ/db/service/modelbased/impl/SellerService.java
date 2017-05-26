@@ -29,11 +29,17 @@ public class SellerService extends Neo4jService<Seller> implements ISellerServic
 
     @Override
     public Optional<List<Seller>> getByName(String name) {
-        return repository.findByName(name);
+        List<Seller> s = repository.findByName(name);
+        return (s == null)
+                ? Optional.empty()
+                : Optional.of(s);
     }
 
     @Override
     public Optional<Seller> getByEmail(String email) {
-        return repository.findByEmail(email);
+        Seller s = repository.findByEmail(email);
+        return (s == null)
+                ? Optional.empty()
+                : Optional.of(s);
     }
 }

@@ -1,7 +1,5 @@
 package com.univ.db.model.dto;
 
-import com.univ.db.model.dao.Order;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,7 +18,7 @@ public class SellerDTO {
     private String name;
     private String email;
 
-    private Set<Order> orders = new HashSet<>();
+    private Set<OrderDTO> orders = new HashSet<>();
 
     public SellerDTO() {
         this.id = 0L;
@@ -37,7 +35,7 @@ public class SellerDTO {
         this.email = email;
     }
 
-    public SellerDTO(Long id, String name, String email, Set<Order> orders) {
+    public SellerDTO(Long id, String name, String email, Set<OrderDTO> orders) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -68,11 +66,11 @@ public class SellerDTO {
         this.email = email;
     }
 
-    public Set<Order> getOrders() {
+    public Set<OrderDTO> getOrders() {
         return orders;
     }
 
-    public void setOrders(Set<Order> orders) {
+    public void setOrders(Set<OrderDTO> orders) {
         this.orders = orders;
     }
 }

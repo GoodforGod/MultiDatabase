@@ -1,11 +1,13 @@
 package com.univ.db.model.dao;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.neo4j.ogm.annotation.EndNode;
 import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.RelationshipEntity;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -14,9 +16,9 @@ import java.time.LocalDateTime;
  * @author @GoodforGod
  * @since 19.05.2017
  */
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class)
 @RelationshipEntity(type = "ORDERED")
-public class Order {
+public class Order implements Serializable {
 
     public static final Order EMPTY = new Order();
 
@@ -27,6 +29,7 @@ public class Order {
     private String item;
 
     @EndNode
+    @JsonIgnore
     private Seller seller;
 
     private Order() {
@@ -40,12 +43,6 @@ public class Order {
     }
 
     public Order(String placedOn, String item) {
-        this.placedOn = placedOn;
-        this.item = item;
-    }
-
-    public Order(Long id, String placedOn, String item) {
-        this.id = id;
         this.placedOn = placedOn;
         this.item = item;
     }

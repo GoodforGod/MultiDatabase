@@ -5,6 +5,7 @@ import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,7 +16,7 @@ import java.util.Set;
  * @since 19.05.2017
  */
 @NodeEntity
-public class Seller {
+public class Seller implements Serializable {
 
     public static final Seller EMPTY = new Seller();
 
@@ -27,7 +28,7 @@ public class Seller {
     @Email
     private String email;
 
-    @Relationship(type="ORDERED", direction = Relationship.INCOMING)
+    @Relationship(type="ORDERED")
     private Set<Order> orders = new HashSet<>();
 
     private Seller() {
@@ -35,7 +36,7 @@ public class Seller {
     }
 
     public Seller(Long id, String name, String email) {
-        this.id = id;
+//        this.id = id;
         this.name = name;
         this.email = email;
     }

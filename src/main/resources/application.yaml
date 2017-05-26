@@ -29,5 +29,6 @@ spring:
     neo4j:
       username: neo4j
       password: 1234
+
 logging:
   level: error
