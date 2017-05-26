@@ -4,14 +4,8 @@ package com.univ.db.util;
  * Created by @GoodforGod on 05.05.2017.
  */
 
-import com.univ.db.model.dao.Item;
-import com.univ.db.model.dao.ItemRecent;
-import com.univ.db.model.dao.User;
-import com.univ.db.model.dao.UserAddress;
-import com.univ.db.model.dto.ItemDTO;
-import com.univ.db.model.dto.ItemRecentDTO;
-import com.univ.db.model.dto.UserAddressDTO;
-import com.univ.db.model.dto.UserDTO;
+import com.univ.db.model.dao.*;
+import com.univ.db.model.dto.*;
 
 /**
  * Default Comment
@@ -19,6 +13,24 @@ import com.univ.db.model.dto.UserDTO;
 public class Converter {
 
     //<editor-fold desc="toDTO">
+
+    public static DeclarationDTO toDTO(Declaration t) {
+        return (t == null)
+                ? DeclarationDTO.EMPTY
+                : new DeclarationDTO(Long.valueOf(t.getCatalogCode()), t.getDate(), t.getAccepted(), t.getSupplier());
+    }
+
+    public static SellerDTO toDTO(Seller t){
+        return (t == null)
+                ? SellerDTO.EMPTY
+                : new SellerDTO(t.getName(), t.getEmail());
+    }
+
+    public static OrderDTO toDTO(Order t) {
+        return (t == null)
+                ? OrderDTO.EMPTY
+                : new OrderDTO(t.getItem(), t.getPlacedOn());
+    }
 
     public static ItemDTO toDTO(Item t) {
         return (t == null)
@@ -62,6 +74,27 @@ public class Converter {
     //</editor-fold>
 
     //<editor-fold desc="toDAO">
+
+    public static Declaration toDAO(DeclarationDTO t) {
+        if(t == null)
+            throw new NullPointerException("NULLABLE");
+
+        return new Declaration(t.getCatalogCode(), t.getAccepted(), t.getSupplier());
+    }
+
+    public static Order toDAO(OrderDTO t) {
+        if(t == null)
+            throw new NullPointerException("NULLABLE");
+
+        return new Order(t.getItem(), t.getPlacedOn());
+    }
+
+    public static Seller toDAO(SellerDTO t) {
+        if(t == null)
+            throw new NullPointerException("NULLABLE");
+
+        return new Seller(t.getId(), t.getName(), t.getEmail());
+    }
 
     public static Item toDAO(ItemDTO t) {
         if(t == null)
