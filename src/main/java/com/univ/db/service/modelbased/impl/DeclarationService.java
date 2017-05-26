@@ -29,7 +29,7 @@ public class DeclarationService extends CassandraService<Declaration> implements
 
     @Override
     public Optional<Declaration> getByCatalogCode(Long catalog_code) {
-        return repository.findByCatalogCode(catalog_code);
+        return repository.findByCatalogCode(catalog_code.toString());
     }
 
     @Override

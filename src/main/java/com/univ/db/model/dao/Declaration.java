@@ -1,8 +1,8 @@
 package com.univ.db.model.dao;
 
 import org.springframework.data.cassandra.mapping.PrimaryKey;
+import org.springframework.data.cassandra.mapping.Table;
 
-import javax.persistence.Table;
 import java.time.LocalDateTime;
 
 /**
@@ -11,7 +11,8 @@ import java.time.LocalDateTime;
  * @author @GoodforGod
  * @since 19.05.2017
  */
-@Table
+
+@Table(value = "declarations")
 public class Declaration {
 
     public static final Declaration EMPTY = new Declaration();
@@ -19,12 +20,12 @@ public class Declaration {
     @PrimaryKey
     private String catalogCode;
 
-    private String date;
+    private String data;
     private String accepted;
     private String supplier;
 
     private Declaration() {
-        this.date = LocalDateTime.now().toString();
+        this.data = LocalDateTime.now().toString();
     }
 
     public Declaration(Long catalogCode, String accepted, String supplier) {
@@ -36,12 +37,16 @@ public class Declaration {
 
     //<editor-fold desc="GetterAndSetter">
 
-    public String getDate() {
-        return date;
+    public void setCatalogCode(String catalogCode) {
+        this.catalogCode = catalogCode;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
     }
 
     public String getCatalogCode() {

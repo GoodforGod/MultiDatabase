@@ -2,6 +2,7 @@ package com.univ.db.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.cassandra.config.CassandraClusterFactoryBean;
+import org.springframework.data.cassandra.config.SchemaAction;
 import org.springframework.data.cassandra.config.java.AbstractCassandraConfiguration;
 import org.springframework.data.cassandra.mapping.BasicCassandraMappingContext;
 import org.springframework.data.cassandra.mapping.CassandraMappingContext;
@@ -29,6 +30,12 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
         cluster.setContactPoints("127.0.0.1");
         cluster.setPort(9042);
         return cluster;
+    }
+
+    @Bean
+    @Override
+    public SchemaAction getSchemaAction() {
+        return SchemaAction.RECREATE;
     }
 
     @Bean

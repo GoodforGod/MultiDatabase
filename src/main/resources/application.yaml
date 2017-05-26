@@ -21,9 +21,11 @@ spring:
     mongodb:
       database: shop
       uri: mongodb://localhost:27017
+
     cassandra:
       port: 9042
       keyspace-name: sample
+
     neo4j:
       username: neo4j
       password: 1234

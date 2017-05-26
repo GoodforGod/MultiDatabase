@@ -2,8 +2,7 @@ package com.univ.db.service.modelbased.impl.prime;
 
 import com.google.common.collect.Lists;
 import com.univ.db.service.modelbased.ICRUDService;
-import org.springframework.data.cassandra.repository.CassandraRepository;
-import org.springframework.data.cassandra.repository.MapId;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -15,11 +14,11 @@ import java.util.Optional;
  * @author @GoodforGod
  * @since 19.05.2017
  */
-public class CassandraService<T> extends PrimeUtilService<T, MapId> implements ICRUDService<T, MapId> {
+public class CassandraService<T> extends PrimeUtilService<T, String> implements ICRUDService<T, String> {
 
-    private CassandraRepository<T> primeRepository;
+    private CrudRepository<T, String> primeRepository;
 
-    public CassandraService(CassandraRepository<T> primeRepository) {
+    public CassandraService(CrudRepository<T, String> primeRepository) {
         this.primeRepository = primeRepository;
     }
 
@@ -34,7 +33,7 @@ public class CassandraService<T> extends PrimeUtilService<T, MapId> implements I
     }
 
     @Override
-    public Optional<T> getById(MapId uuid) {
+    public Optional<T> getById(String uuid) {
         return Optional.of(primeRepository.findOne(uuid));
     }
 
@@ -53,7 +52,7 @@ public class CassandraService<T> extends PrimeUtilService<T, MapId> implements I
 
     @Transactional
     @Override
-    public void deleteById(MapId uuid) {
+    public void deleteById(String uuid) {
         primeRepository.delete(uuid);
     }
 }

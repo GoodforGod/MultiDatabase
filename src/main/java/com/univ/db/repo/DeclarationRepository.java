@@ -1,7 +1,7 @@
 package com.univ.db.repo;
 
 import com.univ.db.model.dao.Declaration;
-import org.springframework.data.cassandra.repository.CassandraRepository;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,9 +14,9 @@ import java.util.Optional;
  * @since 19.05.2017
  */
 @Repository
-public interface DeclarationRepository extends CassandraRepository<Declaration> {
+public interface DeclarationRepository extends CrudRepository<Declaration, String> {
 
-    Optional<Declaration> findByCatalogCode(Long catalog_code);
+    Optional<Declaration> findByCatalogCode(String catalogCode);
 
     Optional<List<Declaration>> findByAccepted(String accepted);
 

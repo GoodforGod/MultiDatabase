@@ -17,7 +17,7 @@ public class Converter {
     public static DeclarationDTO toDTO(Declaration t) {
         return (t == null)
                 ? DeclarationDTO.EMPTY
-                : new DeclarationDTO(Long.valueOf(t.getCatalogCode()), t.getDate(), t.getAccepted(), t.getSupplier());
+                : new DeclarationDTO(Long.valueOf(t.getCatalogCode()), t.getData(), t.getAccepted(), t.getSupplier());
     }
 
     public static SellerDTO toDTO(Seller t){
