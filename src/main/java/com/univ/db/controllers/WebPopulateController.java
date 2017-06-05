@@ -21,8 +21,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.stream.Collectors;
-
 /**
  * Default Comment
  *
@@ -30,7 +28,7 @@ import java.util.stream.Collectors;
  * @since 05.06.2017
  */
 @Controller
-public class WebPopulateControler {
+public class WebPopulateController {
     private final Logger logger = org.slf4j.LoggerFactory.getLogger(WebMainController.class);
 
     private static Long counter = 1L;
@@ -38,7 +36,7 @@ public class WebPopulateControler {
     private final ItemRecentService itemRecentService;
 
     @Autowired
-    public WebPopulateControler(ItemRecentService itemRecentService) {
+    public WebPopulateController(ItemRecentService itemRecentService) {
         this.itemRecentService = itemRecentService;
     }
 
@@ -47,10 +45,7 @@ public class WebPopulateControler {
         IProduceFactory<User> factory = new GenProduceFactory<>(User.class);
         IProduceFactory<UserAddress> addressFactory = new GenProduceFactory<>(UserAddress.class);
 
-        new SqlExporter<>(User.class).export(factory.produce(1000000).stream().map(u -> {
-            u.setAddress(addressFactory.produce());
-            return u;
-        }).collect(Collectors.toList()));
+        new SqlExporter<>(User.class).export(factory.produce(100000));
 
         return "home";
     }
@@ -74,7 +69,7 @@ public class WebPopulateControler {
         IProduceFactory<Item> factory = new GenProduceFactory<>(Item.class);
         IProduceFactory<Manufacture> manufactureFactory = new GenProduceFactory<>(Manufacture.class);
 
-        new CsvExporter<>(Item.class).export(factory.produce(1000000));
+        new CsvExporter<>(Item.class).export(factory.produce(100000));
 
         return "home";
     }
@@ -83,7 +78,7 @@ public class WebPopulateControler {
     public String populateCassandra(Model model) {
         IProduceFactory<Declaration> factory = new GenProduceFactory<>(Declaration.class);
 
-        new CsvExporter<>(Declaration.class).export(factory.produce(1000000));
+        new CsvExporter<>(Declaration.class).export(factory.produce(100000));
 
         return "home";
     }
@@ -93,7 +88,7 @@ public class WebPopulateControler {
         IProduceFactory<Seller> factory = new GenProduceFactory<>(Seller.class);
         IProduceFactory<Order> orderFactory = new GenProduceFactory<>(Order.class);
 
-        new CsvExporter<>(Seller.class).export(factory.produce(1000000));
+        new CsvExporter<>(Seller.class).export(factory.produce(100000));
 
         return "home";
     }
