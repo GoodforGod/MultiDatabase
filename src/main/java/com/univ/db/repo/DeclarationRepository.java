@@ -1,6 +1,6 @@
 package com.univ.db.repo;
 
-import com.univ.db.model.dao.Declaration;
+import com.univ.db.model.dao.cassandra.Declaration;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

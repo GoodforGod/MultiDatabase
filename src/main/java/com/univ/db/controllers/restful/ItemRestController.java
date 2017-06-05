@@ -6,7 +6,9 @@ package com.univ.db.controllers.restful;
 
 import com.univ.db.controllers.restful.exceptions.NotCreatedException;
 import com.univ.db.controllers.restful.exceptions.NotFoundException;
+import com.univ.db.model.dao.redis.ItemRecent;
 import com.univ.db.model.dto.ItemDTO;
+import com.univ.db.service.modelbased.impl.ItemRecentService;
 import com.univ.db.service.modelbased.impl.ItemService;
 import com.univ.db.util.Converter;
 import com.univ.db.util.RestResolver;
@@ -17,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.logging.Logger;
 
 /**
  * Default Comment
@@ -26,15 +29,20 @@ public class ItemRestController {
 
     private final String PATH = RestResolver.ITEM;
     private final ItemService itemService;
+    private final ItemRecentService itemRecentService;
+
+    private final Logger logger = Logger.getLogger(ItemRestController.class.getName());
 
     @Autowired
-    public ItemRestController(ItemService itemService) {
+    public ItemRestController(ItemService itemService, ItemRecentService itemRecentService) {
         this.itemService = itemService;
+        this.itemRecentService = itemRecentService;
     }
 
     @RequestMapping(value = PATH + "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ItemDTO> get(@PathVariable("id") String id) {
         ItemDTO itemDTO = Converter.toDTO(itemService.getById(id).orElseThrow(NotFoundException::new));
+        itemRecentService.save(new ItemRecent(itemDTO));
         return new ResponseEntity<>(itemDTO, HttpStatus.OK);
     }
 
@@ -55,6 +63,12 @@ public class ItemRestController {
     public void delete(@PathVariable("id") String id) {
         try {
             itemService.deleteById(id);
+
+            try {
+                itemRecentService.deleteById(id);
+            } catch (Exception e) {
+                logger.warning(e.getMessage());
+            }
         } catch (Exception e) {
             throw new NotFoundException();
         }

@@ -1,10 +1,13 @@
-package com.univ.db.model.dao;
+package com.univ.db.model.dao.sql;
 
 /*
  * Created by @GoodforGod on 05.05.2017.
  */
 
 import com.univ.db.util.JpaResolver;
+import io.dummymaker.annotation.GenEmail;
+import io.dummymaker.annotation.GenName;
+import io.dummymaker.annotation.GenPass;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -24,19 +27,22 @@ public class User {
     @Column(name = "id")
     private Long id;
 
+    @GenName
     private String name;
 
     @Column(unique = true)
     @Email
+    @GenEmail
     private String email;
 
     @NotEmpty
+    @GenPass
     private String password;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
     private UserAddress address;
 
-    private User() {
+    public User() {
         this.name   = "";
         this.email  = "";
         this.password = "";

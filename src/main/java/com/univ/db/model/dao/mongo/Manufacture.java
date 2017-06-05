@@ -1,8 +1,12 @@
-package com.univ.db.model.dao;
+package com.univ.db.model.dao.mongo;
 
 /*
  * Created by @GoodforGod on 05.05.2017.
  */
+
+import io.dummymaker.annotation.GenLocalDateTime;
+import io.dummymaker.annotation.GenName;
+import io.dummymaker.annotation.prime.GenForceExport;
 
 import java.util.Date;
 
@@ -13,9 +17,16 @@ public class Manufacture {
 
     public static final Manufacture EMPTY = new Manufacture();
 
+    @GenName
     private String firm;
-    private String country;
-    private String city;
+
+    @GenForceExport
+    private String country = "Russia";
+
+    @GenForceExport
+    private String city = "Saint-Petersbirg";
+
+    @GenLocalDateTime
     private Date created;
 
     public Manufacture() {

@@ -1,6 +1,6 @@
 package com.univ.db.config;
 
-import com.univ.db.model.dao.ItemRecent;
+import com.univ.db.model.dao.redis.ItemRecent;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;

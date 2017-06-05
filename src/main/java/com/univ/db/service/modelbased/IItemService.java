@@ -4,7 +4,7 @@ package com.univ.db.service.modelbased;
  * Created by @GoodforGod on 05.05.2017.
  */
 
-import com.univ.db.model.dao.Item;
+import com.univ.db.model.dao.mongo.Item;
 
 import java.util.Optional;
 

@@ -1,5 +1,7 @@
-package com.univ.db.model.dao;
+package com.univ.db.model.dao.neo4j;
 
+import io.dummymaker.annotation.GenEmail;
+import io.dummymaker.annotation.GenName;
 import org.hibernate.validator.constraints.Email;
 import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.NodeEntity;
@@ -23,20 +25,21 @@ public class Seller implements Serializable {
     @GraphId
     private Long id;
 
+    @GenName
     private String name;
 
     @Email
+    @GenEmail
     private String email;
 
     @Relationship(type="ORDERED")
     private Set<Order> orders = new HashSet<>();
 
-    private Seller() {
+    public Seller() {
 
     }
 
-    public Seller(Long id, String name, String email) {
-//        this.id = id;
+    public Seller(String name, String email) {
         this.name = name;
         this.email = email;
     }

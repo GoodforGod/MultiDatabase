@@ -4,7 +4,7 @@ package com.univ.db.service.modelbased.impl;
  * Created by @GoodforGod on 05.05.2017.
  */
 
-import com.univ.db.model.dao.Item;
+import com.univ.db.model.dao.mongo.Item;
 import com.univ.db.repo.ItemRepository;
 import com.univ.db.service.modelbased.IItemService;
 import com.univ.db.service.modelbased.impl.prime.MongoService;

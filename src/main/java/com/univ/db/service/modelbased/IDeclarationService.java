@@ -1,6 +1,6 @@
 package com.univ.db.service.modelbased;
 
-import com.univ.db.model.dao.Declaration;
+import com.univ.db.model.dao.cassandra.Declaration;
 
 import java.util.List;
 import java.util.Optional;

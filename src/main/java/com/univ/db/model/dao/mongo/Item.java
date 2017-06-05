@@ -1,11 +1,13 @@
-package com.univ.db.model.dao;
+package com.univ.db.model.dao.mongo;
 
 /*
  * Created by @GoodforGod on 05.05.2017.
  */
 
 import com.univ.db.util.MongoResolver;
-import org.springframework.data.mongodb.core.index.Indexed;
+import io.dummymaker.annotation.GenLong;
+import io.dummymaker.annotation.GenName;
+import io.dummymaker.annotation.GenString;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Id;
@@ -23,15 +25,19 @@ public class Item {
     @Id
     private String id;
 
-    @Indexed(unique = true)
+    @GenLong
     private Long catalogCode;
+
+    @GenName
     private String title;
+
+    @GenString
     private String descr;
     private List<String> specs;
     private List<String> tags;
     private Manufacture manufacture;
 
-    private Item() {
+    public Item() {
         this.id = "-1";
         this.catalogCode = 0L;
         this.title = "";

@@ -4,7 +4,7 @@ package com.univ.db.model.dto;
  * Created by @GoodforGod on 05.05.2017.
  */
 
-import com.univ.db.model.dao.Manufacture;
+import com.univ.db.model.dao.mongo.Manufacture;
 
 import java.time.LocalDateTime;
 import java.util.Collections;

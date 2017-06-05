@@ -1,10 +1,13 @@
-package com.univ.db.model.dao;
+package com.univ.db.model.dao.sql;
 
 /*
  * Created by @GoodforGod on 05.05.2017.
  */
 
 import com.univ.db.util.JpaResolver;
+import io.dummymaker.annotation.GenInteger;
+import io.dummymaker.annotation.GenString;
+import io.dummymaker.annotation.prime.GenForceExport;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -18,13 +21,20 @@ public class UserAddress implements Serializable {
 
     public static final UserAddress EMPTY = new UserAddress();
 
+    @GenString
     private String address;
-    private String country;
-    private String city;
+
+    @GenForceExport
+    private String country = "Russia";
+
+    @GenForceExport
+    private String city = "Saint-Petersburg";
+
+    @GenInteger
     private Integer index;
     private User user;
 
-    private UserAddress() {
+    public UserAddress() {
         this.address = "";
         this.country = "";
         this.city = "";

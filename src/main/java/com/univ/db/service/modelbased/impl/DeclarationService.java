@@ -1,6 +1,6 @@
 package com.univ.db.service.modelbased.impl;
 
-import com.univ.db.model.dao.Declaration;
+import com.univ.db.model.dao.cassandra.Declaration;
 import com.univ.db.repo.DeclarationRepository;
 import com.univ.db.service.modelbased.IDeclarationService;
 import com.univ.db.service.modelbased.impl.prime.CassandraService;

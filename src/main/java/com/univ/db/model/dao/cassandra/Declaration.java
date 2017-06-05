@@ -1,5 +1,7 @@
-package com.univ.db.model.dao;
+package com.univ.db.model.dao.cassandra;
 
+import io.dummymaker.annotation.GenLocalDateTime;
+import io.dummymaker.annotation.GenName;
 import org.springframework.data.cassandra.mapping.PrimaryKey;
 import org.springframework.data.cassandra.mapping.Table;
 
@@ -20,11 +22,16 @@ public class Declaration {
     @PrimaryKey
     private String catalogCode;
 
+    @GenLocalDateTime
     private String data;
+
+    @GenLocalDateTime
     private String accepted;
+
+    @GenName
     private String supplier;
 
-    private Declaration() {
+    public Declaration() {
         this.data = LocalDateTime.now().toString();
     }
 

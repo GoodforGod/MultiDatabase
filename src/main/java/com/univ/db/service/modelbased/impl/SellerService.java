@@ -1,6 +1,6 @@
 package com.univ.db.service.modelbased.impl;
 
-import com.univ.db.model.dao.Seller;
+import com.univ.db.model.dao.neo4j.Seller;
 import com.univ.db.repo.SellerRepository;
 import com.univ.db.service.modelbased.ISellerService;
 import com.univ.db.service.modelbased.impl.prime.Neo4jService;

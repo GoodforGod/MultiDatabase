@@ -4,7 +4,7 @@ package com.univ.db.repo;
  * Created by @GoodforGod on 05.05.2017.
  */
 
-import com.univ.db.model.dao.Item;
+import com.univ.db.model.dao.mongo.Item;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

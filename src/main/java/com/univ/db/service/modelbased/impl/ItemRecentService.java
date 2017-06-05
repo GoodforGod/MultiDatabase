@@ -4,7 +4,7 @@ package com.univ.db.service.modelbased.impl;
  * Created by @GoodforGod on 05.05.2017.
  */
 
-import com.univ.db.model.dao.ItemRecent;
+import com.univ.db.model.dao.redis.ItemRecent;
 import com.univ.db.service.modelbased.IItemRecentService;
 import com.univ.db.service.modelbased.impl.prime.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;

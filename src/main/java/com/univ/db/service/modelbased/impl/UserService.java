@@ -4,7 +4,7 @@ package com.univ.db.service.modelbased.impl;
  * Created by @GoodforGod on 05.05.2017.
  */
 
-import com.univ.db.model.dao.User;
+import com.univ.db.model.dao.sql.User;
 import com.univ.db.repo.UserRepository;
 import com.univ.db.service.modelbased.IUserService;
 import com.univ.db.service.modelbased.impl.prime.JpaService;

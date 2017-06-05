@@ -4,7 +4,7 @@ package com.univ.db.repo;
  * Created by @GoodforGod on 05.05.2017.
  */
 
-import com.univ.db.model.dao.User;
+import com.univ.db.model.dao.sql.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -6,8 +6,8 @@ package com.univ.db.controllers.restful;
 
 import com.univ.db.controllers.restful.exceptions.NotCreatedException;
 import com.univ.db.controllers.restful.exceptions.NotFoundException;
-import com.univ.db.model.dao.User;
-import com.univ.db.model.dao.UserAddress;
+import com.univ.db.model.dao.sql.User;
+import com.univ.db.model.dao.sql.UserAddress;
 import com.univ.db.model.dto.UserAddressDTO;
 import com.univ.db.service.modelbased.impl.UserService;
 import com.univ.db.util.Converter;

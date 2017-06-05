@@ -4,7 +4,7 @@ package com.univ.db.service.modelbased;
  * Created by @GoodforGod on 05.05.2017.
  */
 
-import com.univ.db.model.dao.User;
+import com.univ.db.model.dao.sql.User;
 
 import java.util.List;
 import java.util.Optional;

@@ -4,7 +4,13 @@ package com.univ.db.util;
  * Created by @GoodforGod on 05.05.2017.
  */
 
-import com.univ.db.model.dao.*;
+import com.univ.db.model.dao.cassandra.Declaration;
+import com.univ.db.model.dao.mongo.Item;
+import com.univ.db.model.dao.neo4j.Order;
+import com.univ.db.model.dao.neo4j.Seller;
+import com.univ.db.model.dao.redis.ItemRecent;
+import com.univ.db.model.dao.sql.User;
+import com.univ.db.model.dao.sql.UserAddress;
 import com.univ.db.model.dto.*;
 
 /**
@@ -93,7 +99,7 @@ public class Converter {
         if(t == null)
             throw new NullPointerException("NULLABLE");
 
-        return new Seller(t.getId(), t.getName(), t.getEmail());
+        return new Seller(t.getName(), t.getEmail());
     }
 
     public static Item toDAO(ItemDTO t) {

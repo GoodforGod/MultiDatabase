@@ -1,6 +1,6 @@
 package com.univ.db.service.modelbased;
 
-import com.univ.db.model.dao.Seller;
+import com.univ.db.model.dao.neo4j.Seller;
 
 import java.util.List;
 import java.util.Optional;

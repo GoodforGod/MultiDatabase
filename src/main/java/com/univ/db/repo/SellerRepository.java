@@ -1,6 +1,6 @@
 package com.univ.db.repo;
 
-import com.univ.db.model.dao.Seller;
+import com.univ.db.model.dao.neo4j.Seller;
 import org.springframework.data.neo4j.repository.GraphRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;

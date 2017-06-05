@@ -1,8 +1,10 @@
-package com.univ.db.model.dao;
+package com.univ.db.model.dao.neo4j;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import io.dummymaker.annotation.GenLocalDateTime;
+import io.dummymaker.annotation.GenString;
 import org.neo4j.ogm.annotation.EndNode;
 import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.RelationshipEntity;
@@ -25,14 +27,17 @@ public class Order implements Serializable {
     @GraphId
     private Long id;
 
+    @GenLocalDateTime
     private String placedOn;
+
+    @GenString
     private String item;
 
     @EndNode
     @JsonIgnore
     private Seller seller;
 
-    private Order() {
+    public Order() {
         this.placedOn = LocalDateTime.now().toString();
     }
 
