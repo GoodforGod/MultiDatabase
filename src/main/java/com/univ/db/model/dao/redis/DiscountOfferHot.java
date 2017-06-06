@@ -26,6 +26,13 @@ public class DiscountOfferHot implements Serializable {
         this.endDate = LocalDateTime.MIN.toString();
     }
 
+    public DiscountOfferHot(String title, Long code, String description) {
+        this.title = title;
+        this.code = code;
+        this.description = description;
+        this.endDate = LocalDateTime.now().toString();
+    }
+
     public DiscountOfferHot(String title, Long code, String description, String endDate) {
         this.title = title;
         this.code = code;

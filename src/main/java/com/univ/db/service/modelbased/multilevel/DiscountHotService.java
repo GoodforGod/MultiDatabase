@@ -48,7 +48,7 @@ public class DiscountHotService extends RedisService<DiscountOfferHot> {
     }
 
     @Scheduled(fixedDelay = 5000)
-    private void policyScheduler() {
+    void policyScheduler() {
         for(Map.Entry<String, LocalDateTime> policy : desctroyPolicyMap.entrySet()) {
             if (LocalDateTime.from(policy.getValue()).until(LocalDateTime.now(), ChronoUnit.MINUTES) > 5)
                 super.deleteById(policy.getKey());
@@ -64,6 +64,7 @@ public class DiscountHotService extends RedisService<DiscountOfferHot> {
 
             if(offerCached.isPresent()) {
                 updatePolicy(id);
+                save(Converter.toDAO(offerCached.get()));
                 return Optional.of(Converter.toDAO(offerCached.get()));
             }
             else
@@ -100,6 +101,7 @@ public class DiscountHotService extends RedisService<DiscountOfferHot> {
         return Optional.of(itemRecent);
     }
 
+    @Transactional
     @Override
     public void deleteById(String s) {
         super.deleteById(s);

@@ -37,8 +37,8 @@ public class JpaService<T, ID extends Serializable> extends PrimeUtilService<T, 
     public Optional<T> getById(ID id) {
         if(invalidId(id))
             return Optional.empty();
-
-        return Optional.of(primeRepository.findOne(id));
+        T t = primeRepository.findOne(id);
+        return (t != null) ? Optional.of(primeRepository.findOne(id)) : Optional.empty();
     }
 
     @Transactional

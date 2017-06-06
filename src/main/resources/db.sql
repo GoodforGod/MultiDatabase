@@ -6,6 +6,17 @@ CREATE TABLE shop.user_credentials(
   password VARCHAR(64) NOT NULL
 );
 
+DROP TABLE shop.discounts;
+
+CREATE TABLE shop.discounts(
+    title       VARCHAR,
+    code        VARCHAR PRIMARY KEY,
+    description VARCHAR,
+    end_date     VARCHAR
+);
+
+
+
 CREATE TABLE shop.user_addresses(
   id BIGINT PRIMARY KEY REFERENCES shop.user_credentials(id),
   address VARCHAR(128),

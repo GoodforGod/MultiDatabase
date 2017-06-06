@@ -37,7 +37,8 @@ public class MongoService<T> extends PrimeUtilService<T, String> implements ICRU
         if(invalidId(id))
             return Optional.empty();
 
-        return Optional.of(primeRepository.findOne(id));
+        T t = primeRepository.findOne(id);
+        return (t != null) ? Optional.of(primeRepository.findOne(id)) : Optional.empty();
     }
 
     @Transactional

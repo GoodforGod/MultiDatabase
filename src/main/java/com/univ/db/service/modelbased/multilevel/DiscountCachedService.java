@@ -8,6 +8,7 @@ import com.univ.db.util.Converter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -45,7 +46,7 @@ public class DiscountCachedService extends MongoService<DiscountOfferCached> {
     }
 
     @Scheduled(fixedDelay = 5000)
-    private void policyScheduler() {
+    void policyScheduler() {
         for(Map.Entry<String, LocalDateTime> policy : desctroyPolicyMap.entrySet()) {
             if (LocalDateTime.from(policy.getValue()).until(LocalDateTime.now(), ChronoUnit.MINUTES) > 10)
                 super.deleteById(policy.getKey());
@@ -61,6 +62,7 @@ public class DiscountCachedService extends MongoService<DiscountOfferCached> {
 
             if(offerStore.isPresent()) {
                 updatePolicy(id);
+                save(Converter.toDAO(offerStore.get()));
                 return Optional.of(Converter.toDAO(offerStore.get()));
             }
             else
@@ -70,6 +72,7 @@ public class DiscountCachedService extends MongoService<DiscountOfferCached> {
             return offerCached;
     }
 
+    @Transactional
     @Override
     public Optional<DiscountOfferCached> save(DiscountOfferCached discountOfferCached) {
         super.save(discountOfferCached);
@@ -77,6 +80,7 @@ public class DiscountCachedService extends MongoService<DiscountOfferCached> {
         return Optional.of(discountOfferCached);
     }
 
+    @Transactional
     @Override
     public Optional<DiscountOfferCached> delete(DiscountOfferCached discountOfferCached) {
         super.delete(discountOfferCached);
@@ -85,6 +89,7 @@ public class DiscountCachedService extends MongoService<DiscountOfferCached> {
         return Optional.of(discountOfferCached);
     }
 
+    @Transactional
     @Override
     public void deleteById(String id) {
         super.deleteById(id);

@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
  * @author GoodforGod (Anton Kurako)
  * @since 06.06.2017
  */
-@Document(collection = MongoResolver.ITEMS)
+@Document(collection = MongoResolver.DISCOUNT)
 public class DiscountOfferCached {
     private String title;
 

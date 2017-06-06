@@ -2,7 +2,10 @@ package com.univ.db.model.dao.sql;
 
 import com.univ.db.util.JpaResolver;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
 
 /**
@@ -18,7 +21,7 @@ public class DiscountOfferStore {
     private String title;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "code", nullable = false, unique = true)
     private Long code;
 
     private String description;

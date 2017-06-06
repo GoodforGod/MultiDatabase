@@ -12,5 +12,5 @@ public class JpaResolver {
 
     public static final String TABLE_USER_CREDENTIALS   = "user_credentials";
     public static final String TABLE_USER_ADDRESSES     = "user_addresses";
-    public static final String TABLE_DISCOUNT           = "discount";
+    public static final String TABLE_DISCOUNT           = "discounts";
 }

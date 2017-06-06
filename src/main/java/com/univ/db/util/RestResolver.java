@@ -17,4 +17,5 @@ public class RestResolver {
     public static final String USER = API + "/user";
     public static final String ADDRESS = USER + "/address";
     public static final String ITEM_RECENT = ITEM + "/recent";
+    public static final String DISCOUNT = API + "/discount";
 }
