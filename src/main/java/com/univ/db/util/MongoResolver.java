@@ -10,5 +10,6 @@ package com.univ.db.util;
 public class MongoResolver {
     public static final String DATABASE = "shop";
 
-    public static final String ITEMS_COLLECTION = "items";
+    public static final String ITEMS = "items";
+    public static final String DISCOUNT = "discounts";
 }

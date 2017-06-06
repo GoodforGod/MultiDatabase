@@ -5,10 +5,13 @@ package com.univ.db.util;
  */
 
 import com.univ.db.model.dao.cassandra.Declaration;
+import com.univ.db.model.dao.mongo.DiscountOfferCached;
 import com.univ.db.model.dao.mongo.Item;
 import com.univ.db.model.dao.neo4j.Order;
 import com.univ.db.model.dao.neo4j.Seller;
+import com.univ.db.model.dao.redis.DiscountOfferHot;
 import com.univ.db.model.dao.redis.ItemRecent;
+import com.univ.db.model.dao.sql.DiscountOfferStore;
 import com.univ.db.model.dao.sql.User;
 import com.univ.db.model.dao.sql.UserAddress;
 import com.univ.db.model.dto.*;
@@ -17,6 +20,34 @@ import com.univ.db.model.dto.*;
  * Default Comment
  */
 public class Converter {
+
+    public static DiscountOfferCached toDTO(DiscountOfferHot model) {
+        if(model == null)
+            throw new NullPointerException();
+
+        return new DiscountOfferCached(model.getTitle(), model.getCode(), model.getDescription(), model.getEndDate());
+    }
+
+    public static DiscountOfferStore toDTO(DiscountOfferCached model) {
+        if(model == null)
+            throw new NullPointerException();
+
+        return new DiscountOfferStore(model.getTitle(), model.getCode(), model.getDescription(), model.getEndDate());
+    }
+
+    public static DiscountOfferHot toDAO(DiscountOfferCached model) {
+        if(model == null)
+            throw new NullPointerException();
+
+        return new DiscountOfferHot(model.getTitle(), model.getCode(), model.getDescription(), model.getEndDate());
+    }
+
+    public static DiscountOfferCached toDAO(DiscountOfferStore model) {
+        if(model == null)
+            throw new NullPointerException();
+
+        return new DiscountOfferCached(model.getTitle(), model.getCode(), model.getDescription(), model.getEndDate());
+    }
 
     //<editor-fold desc="toDTO">
 

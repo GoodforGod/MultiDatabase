@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Default Comment
  */
-@Document(collection = MongoResolver.ITEMS_COLLECTION)
+@Document(collection = MongoResolver.ITEMS)
 public class Item {
 
     public static final Item EMPTY = new Item();

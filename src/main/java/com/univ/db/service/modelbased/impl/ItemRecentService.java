@@ -8,6 +8,7 @@ import com.univ.db.model.dao.redis.ItemRecent;
 import com.univ.db.service.modelbased.IItemRecentService;
 import com.univ.db.service.modelbased.impl.prime.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +23,7 @@ import java.util.Optional;
 @Service
 public class ItemRecentService extends RedisService<ItemRecent> implements IItemRecentService {
 
+    @Qualifier("recent")
     private final RedisTemplate<String, ItemRecent> redisTemplate;
 
     @Autowired
