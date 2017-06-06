@@ -41,20 +41,23 @@ public class OrderRestController {
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = PATH + "/{sellerId}" + "/orders", method = RequestMethod.PATCH)
-    public void update(@PathVariable("sellerId}") Long sellerId, @Valid @RequestBody OrderDTO model) {
-        Seller seller = sellerService.getById(sellerId).orElseThrow(NotFoundException::new);
-        seller.addOrder(Converter.toDAO(model));
-        sellerService.save(seller).orElseThrow(NotCreatedException::new);
-    }
+    public void update(@PathVariable("sellerId") Long sellerId, @Valid @RequestBody OrderDTO model) {
+        if(model.getId() == null || model.getId().equals(0L) || model.getId().equals(-1L))
+            throw new NullPointerException("NULLABLE ID");
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(value = PATH + "/{sellerId}" + "/orders", method = RequestMethod.POST)
-    public void create(@PathVariable("sellerId}") Long sellerId, @Valid @RequestBody OrderDTO model) {
         Seller seller = sellerService.getById(sellerId).orElseThrow(NotFoundException::new);
         Order order = seller.getOrders().stream().filter(o -> o.getId().equals(model.getId())).findFirst().orElseThrow(NotFoundException::new);
         Order updated = Converter.update(order, model);
         seller.removeOrder(order);
         seller.addOrder(updated);
+        sellerService.save(seller).orElseThrow(NotCreatedException::new);
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(value = PATH + "/{sellerId}" + "/orders", method = RequestMethod.POST)
+    public void create(@PathVariable("sellerId") Long sellerId, @Valid @RequestBody OrderDTO model) {
+        Seller seller = sellerService.getById(sellerId).orElseThrow(NotFoundException::new);
+        seller.addOrder(Converter.toDAO(model));
         sellerService.save(seller).orElseThrow(NotCreatedException::new);
     }
 
