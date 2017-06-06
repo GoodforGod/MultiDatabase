@@ -32,7 +32,7 @@ public class Seller implements Serializable {
     @GenEmail
     private String email;
 
-    @Relationship(type="ORDERED")
+    @Relationship(type="ORDERED", direction = Relationship.INCOMING)
     private Set<Order> orders = new HashSet<>();
 
     public Seller() {

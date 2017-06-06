@@ -9,7 +9,6 @@ import com.univ.db.model.dao.sql.User;
 import com.univ.db.model.dao.sql.UserAddress;
 import com.univ.db.service.modelbased.impl.ItemRecentService;
 import com.univ.db.util.PopulateResolver;
-import io.dummymaker.export.IExporter;
 import io.dummymaker.export.impl.CsvExporter;
 import io.dummymaker.export.impl.SqlExporter;
 import io.dummymaker.produce.GenProduceFactory;
@@ -37,6 +36,8 @@ public class WebPopulateController {
 
     private final ItemRecentService itemRecentService;
 
+    private final String redirect = "redirect:/home";
+
     @Autowired
     public WebPopulateController(ItemRecentService itemRecentService) {
         this.itemRecentService = itemRecentService;
@@ -49,21 +50,23 @@ public class WebPopulateController {
 
         new SqlExporter<>(User.class).export(factory.produce(1000000));
 
-        return "home";
+        return redirect;
     }
 
     @RequestMapping(path = PopulateResolver.REDIS, method = RequestMethod.GET)
     public String populateRedis(Model model) {
         IProduceFactory<ItemRecent> factory = new GenProduceFactory<>(ItemRecent.class);
 
+        itemRecentService.deleteAll();
         Long counter = 1L;
-        for(ItemRecent itemRecent :factory.produce(1000000)) {
+        List<ItemRecent> itemRecents = factory.produce(1000000);
+        for(ItemRecent itemRecent : itemRecents) {
             itemRecent.setCatalogCode(counter);
             itemRecentService.save(itemRecent);
             counter++;
         }
 
-        return "home";
+        return redirect;
     }
 
     @RequestMapping(path = PopulateResolver.MONGO, method = RequestMethod.GET)
@@ -72,7 +75,7 @@ public class WebPopulateController {
 
         new CsvExporter<>(Item.class).export(factory.produce(1000000));
 
-        return "home";
+        return redirect;
     }
 
     @RequestMapping(path = PopulateResolver.CASSANDRA, method = RequestMethod.GET)
@@ -81,23 +84,18 @@ public class WebPopulateController {
 
         new CsvExporter<>(Declaration.class, true, true).export(factory.produce(1000000));
 
-        return "home";
+        return redirect;
     }
 
     @RequestMapping(path = PopulateResolver.NEO4J, method = RequestMethod.GET)
     public String populateNeo4j(Model model) {
         IProduceFactory<Seller> factory = new GenProduceFactory<>(Seller.class);
         IProduceFactory<Order> orderFactory = new GenProduceFactory<>(Order.class);
-        IExporter<Order> orderExporter = new CsvExporter<Order>(Order.class, false, true);
 
         new CsvExporter<>(Seller.class, false, true).export(factory.produce(1000000));
 
-        List<Order> orders = orderFactory.produce(1000000);
-        long orderId = 1;
-        for(Order order : orders) {
+        new CsvExporter<>(Order.class, false, true).export(orderFactory.produce(1000000));
 
-        }
-
-        return "home";
+        return redirect;
     }
 }

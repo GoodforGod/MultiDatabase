@@ -1,13 +1,10 @@
 package com.univ.db.model.dao.neo4j;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import io.dummymaker.annotation.GenLocalDateTime;
 import io.dummymaker.annotation.GenString;
-import org.neo4j.ogm.annotation.EndNode;
 import org.neo4j.ogm.annotation.GraphId;
-import org.neo4j.ogm.annotation.RelationshipEntity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -19,7 +16,7 @@ import java.time.LocalDateTime;
  * @since 19.05.2017
  */
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class)
-@RelationshipEntity(type = "ORDERED")
+//@RelationshipEntity(type = "ORDERED")
 public class Order implements Serializable {
 
     public static final Order EMPTY = new Order();
@@ -33,17 +30,12 @@ public class Order implements Serializable {
     @GenString
     private String item;
 
-    @EndNode
-    @JsonIgnore
-    private Seller seller;
-
     public Order() {
         this.placedOn = LocalDateTime.now().toString();
     }
 
-    public Order(Seller seller, String item) {
+    public Order(String item) {
         this();
-        this.seller = seller;
         this.item = item;
     }
 
@@ -54,12 +46,12 @@ public class Order implements Serializable {
 
     //<editor-fold desc="GetterAndSetter">
 
-    public Long getId() {
-        return id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Seller getSeller() {
-        return seller;
+    public Long getId() {
+        return id;
     }
 
     public String getPlacedOn() {
