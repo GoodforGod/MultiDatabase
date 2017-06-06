@@ -128,4 +128,29 @@ public class Converter {
         return new User(t.getId(), t.getName(), t.getEmail(), t.getPassword());
     }
     //</editor-fold>
+
+    public static boolean isStrValid(String value) {
+        return value != null && !value.trim().isEmpty();
+    }
+
+
+    public static Order update(Order origin, OrderDTO update) {
+        if(update == null || origin == null)
+            throw new NullPointerException();
+
+        origin.setItem((isStrValid(update.getItem())) ? update.getItem() : origin.getItem());
+        origin.setPlacedOn((isStrValid(update.getPlacedOn())) ? update.getPlacedOn() : origin.getPlacedOn());
+
+        return origin;
+    }
+
+    public static Order update(Order origin, Order update) {
+        if(update == null || origin == null)
+            throw new NullPointerException();
+
+        origin.setItem((isStrValid(update.getItem())) ? update.getItem() : origin.getItem());
+        origin.setPlacedOn((isStrValid(update.getPlacedOn())) ? update.getPlacedOn() : origin.getPlacedOn());
+
+        return origin;
+    }
 }

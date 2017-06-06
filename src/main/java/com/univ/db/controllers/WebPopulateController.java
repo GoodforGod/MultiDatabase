@@ -2,7 +2,6 @@ package com.univ.db.controllers;
 
 import com.univ.db.model.dao.cassandra.Declaration;
 import com.univ.db.model.dao.mongo.Item;
-import com.univ.db.model.dao.mongo.Manufacture;
 import com.univ.db.model.dao.neo4j.Order;
 import com.univ.db.model.dao.neo4j.Seller;
 import com.univ.db.model.dao.redis.ItemRecent;
@@ -10,6 +9,7 @@ import com.univ.db.model.dao.sql.User;
 import com.univ.db.model.dao.sql.UserAddress;
 import com.univ.db.service.modelbased.impl.ItemRecentService;
 import com.univ.db.util.PopulateResolver;
+import io.dummymaker.export.IExporter;
 import io.dummymaker.export.impl.CsvExporter;
 import io.dummymaker.export.impl.SqlExporter;
 import io.dummymaker.produce.GenProduceFactory;
@@ -20,6 +20,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.List;
 
 /**
  * Default Comment
@@ -45,7 +47,7 @@ public class WebPopulateController {
         IProduceFactory<User> factory = new GenProduceFactory<>(User.class);
         IProduceFactory<UserAddress> addressFactory = new GenProduceFactory<>(UserAddress.class);
 
-        new SqlExporter<>(User.class).export(factory.produce(100000));
+        new SqlExporter<>(User.class).export(factory.produce(1000000));
 
         return "home";
     }
@@ -67,9 +69,8 @@ public class WebPopulateController {
     @RequestMapping(path = PopulateResolver.MONGO, method = RequestMethod.GET)
     public String populateMongo(Model model) {
         IProduceFactory<Item> factory = new GenProduceFactory<>(Item.class);
-        IProduceFactory<Manufacture> manufactureFactory = new GenProduceFactory<>(Manufacture.class);
 
-        new CsvExporter<>(Item.class).export(factory.produce(100000));
+        new CsvExporter<>(Item.class).export(factory.produce(1000000));
 
         return "home";
     }
@@ -78,7 +79,7 @@ public class WebPopulateController {
     public String populateCassandra(Model model) {
         IProduceFactory<Declaration> factory = new GenProduceFactory<>(Declaration.class);
 
-        new CsvExporter<>(Declaration.class).export(factory.produce(100000));
+        new CsvExporter<>(Declaration.class, true, true).export(factory.produce(1000000));
 
         return "home";
     }
@@ -87,8 +88,15 @@ public class WebPopulateController {
     public String populateNeo4j(Model model) {
         IProduceFactory<Seller> factory = new GenProduceFactory<>(Seller.class);
         IProduceFactory<Order> orderFactory = new GenProduceFactory<>(Order.class);
+        IExporter<Order> orderExporter = new CsvExporter<Order>(Order.class, false, true);
 
-        new CsvExporter<>(Seller.class).export(factory.produce(100000));
+        new CsvExporter<>(Seller.class, false, true).export(factory.produce(1000000));
+
+        List<Order> orders = orderFactory.produce(1000000);
+        long orderId = 1;
+        for(Order order : orders) {
+
+        }
 
         return "home";
     }
